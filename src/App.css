@@ -1,38 +1,435 @@
+:root {
+  --yellow: linear-gradient(180deg, #F8D49A -146.42%, #FAD79D -46.42%);
+  --orange: #fca61f;
+  --black: #242d49;
+  --gray: #788097;
+  --purple: linear-gradient(180deg, #BB67FF 0%, #C484F3 100%);
+  --pink: #f1d0cf;
+  --glass: rgba(255, 255, 255, 0.54);
+  --boxShadow: 0px 19px 60px rgb(0 0 0 / 8%);
+  --smboxShadow: -79px 51px 60px rgba(0, 0, 0, 0.08);
+  --activeItem: #f799a354;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  /* padding: 0.5rem 3.5rem; */
+  color: var(--black);
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-family: 'Poppins', sans-serif;
+}
+
+.AppContainer {
+  display: grid;
+  height: 97%;
+  width: 97%;
+  background: var(--glass);
+  border-radius: 2rem;
+  gap: 16px;
+  grid-template-columns: 11rem auto 20rem;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1200px) {
+  .AppContainer {
+    grid-template-columns: 10% 50% auto;
+    overflow-y: scroll;
+  } 
+}
+
+@media screen and (max-width: 768px) {
+  .AppContainer{
+    grid-template-columns: 1fr;
+  } 
+}
+
+
+/*Sidebar Styling*/
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-top: 4rem;
+  transition: all 300ms ease;
+  background-color: #f1d0cf;
+}
+/* logo */
+.bars{
+  display: none;
+}
+
+.logo {
+  display: flex;
+  height: 5rem;
+  font-weight: bold;
+  font-size: 22px;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  height: 4%;
+}
+.logo > span > span {
+  color: var(--pink);
+}
+
+.logo > img {
+  width: 10rem;
+  height: 7rem;
+}
+
+/* menu */
+.menu {
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 2.5rem;
+  margin-left: 2rem;
+  position: relative;
+  transition: all 300ms ease;
+  border-radius: 0.7rem;
+  font-size: 14px;
+}
+
+.menuItem:hover {
+  cursor: pointer;
+}
+
+.menu .menuItem:last-child {
+  position: absolute;
+  bottom: 2.3rem;
+  width: 100%;
+}
+
+.active {
+  background: var(--activeItem);
+  margin-left: 0;
+}
+.active::before {
+  content: "";
+  width: 8px;
+  height: 100%;
+  background: var(--pink);
+  margin-right: calc(1rem - 8px);
+}
+
+
+/* Tablets */
+@media screen and (max-width: 1200px) {
+  .menuItem>span{
+    display: none;
+  }
+  .logo{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar{
+    position: fixed;
+    z-index: 9;
+    background: #ffe0e0;
+    width: 55%;
+    padding-right: 1rem;
+    height: 100%;
+  }
+  .menuItem>span{
+    display: block;
+  }
+  .logo{
+    display: flex;
+  }
+  .menu .menuItem:last-child {
+    position: relative;
+    margin-top: 6rem;
+  }
+  .bars{
+    display: flex;
+    position: fixed;
+    top: 2rem;
+    left:60%;
+    background:#ffe0e0;
+    padding:10px;
+    border-radius: 10px;
+    z-index: 9;
+  }
+  .close{
+    left: -60%;
+  }
+}
+
+/*Middle Column = Dashboard css styling*/
+.Dashboard{
+  /* padding-top: 1rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+@media screen and (max-width: 1200px) {
+  .Dashboard{
+      justify-content:flex-start;
+      margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px)
+{
+  .Dashboard{
+      align-items: center;
+  }
+}
+
+/*Main Cards displayed on Loading page css*/
+.Cards {
+  display: flex;
+  gap: 10px;
+}
+.parentContainer{
+  width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+  .Cards{
+    flex-direction: column;
+  }
+  .parentContainer{
+    height: 9rem;
+  }
+}
+
+@media screen and (max-width: 768px)
+{
+  .Cards{
+    width: 90%;
+  }
+}
+
+/*Compact Cards display style*/
+.CompactCard {
+  display: flex;
+  flex: 1;
+  height: 7rem !important;
+  border-radius: 0.7rem;
   color: white;
+  padding: 1rem;
+  position: relative;
+  cursor: pointer;
+}
+.CompactCard:hover {
+  box-shadow: none !important;
 }
 
-.App-link {
-  color: #61dafb;
+/* radial bar */
+.radialBar {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+.CircularProgressbar {
+  width: 4rem !important;
+  overflow: visible;
+}
+.CircularProgressbar-path {
+  stroke: white !important;
+  stroke-width: 12px !important;
+  filter: drop-shadow(2px 4px 6px white);
+}
+.CircularProgressbar-trail {
+  display: none;
+}
+.CircularProgressbar-text {
+  fill: white !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.radialBar > span {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+/* sideDetail*/
+.detail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.detail > span:nth-child(2) {
+  font-size: 22px;
+  font-weight: bold;
+}
+.detail > span:nth-child(3) {
+  font-size: 12px;
+}
+
+
+/*Landing Page Table*/
+.MuiTableRow-root > * {
+  padding: 10px;
+}
+
+.MuiTableRow-root.MuiTableRow-head > * {
+  font-weight: bold !important;
+}
+
+.Table td,
+th {
+  border: none !important;
+}
+
+.Table:first-child {
+  border-radius: 0.7rem !important;
+}
+.status {
+  padding: 8px;
+  border-radius: 9px;
+}
+
+.Details {
+  color: #00b5ff !important;
+}
+
+@media screen and (max-width: 1200px) {
+  .Table {
+    width: 170%;
+    margin-top: 2rem;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+
+@media screen and (max-width: 768px) {
+  .Table{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 23rem;
   }
+}
+
+
+/*Right Side content styling here*/
+.RightSide{
+  display: flex;
+  flex-direction: column;
+  /* padding-top: 1rem; */
+  width: 95%;
+  justify-content: space-evenly;
+}
+
+
+@media screen and (max-width: 1200px) {
+  .RightSide{
+      justify-content: flex-start;
+      margin-top: 3rem;
+  }
+}
+
+@media screen and (max-width: 768px)
+{
+  .RightSide{
+      width: 100%;
+      margin-top: 0;
+  }
+  .RightSide>div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+}
+
+/*Featured Products CSS*/
+.featured {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.featuredItem {
+  flex: 1;
+  margin: 0px 20px;
+  padding: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.featuredTitle{
+    font-size: 20px;
+}
+
+.featuredMoneyContainer{
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.featuredMoney{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.featuredMoneyRate{
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.featuredIcon{
+    font-size: 14px;
+    margin-left: 5px;
+    color: green;
+}
+
+.featuredIcon.negative{
+    color: red;
+}
+
+.featuredSub{
+    font-size: 15px;
+    color: gray;
+}
+
+/*Chart CSS*/
+.chart {
+  /*width: 90%;*/
+  Height: 250px !important;
+  margin: 20px;
+  padding: 20px;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.chartTitle {
+  margin-bottom: 20px;
+}
+
+/*products card css*/
+.card-description {
+  width: 100%;
+  min-height: 80vh;
+  display:grid;
+  grid-template-columns: repeat(4, lfr);
+  justify-items: center;
+  padding: 10px;
+}
+
+.products-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px
 }

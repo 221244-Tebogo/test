@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/sidebar';
+import Dashboard from './pages/dashboard';
+import Compare from './pages/compare';
+import Timeline from './pages/timeline.js';  
+//import Rightside from './components/rightside';
+
+//div it's a parent ele
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div className="AppContainer">
+      <Sidebar />
+      <div>
+      <Routes>
+        <Route path='/' element= {<Dashboard />} />
+        <Route path='/timeline' element={<Timeline/>} />
+        <Route path='/compare' element={<Compare />} />
+      </Routes>
+      </div>
+  
+        </div>
     </div>
   );
 }
