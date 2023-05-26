@@ -5,6 +5,7 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const DonutChart = ({ launchData }) => {
+  // Extracting necessary data from launchData
   const labels = launchData.map((item) => item.mission_name);
   const prices = launchData.map((item) => item.launch_price);
   const years = launchData.map((item) => item.launch_year);
@@ -19,13 +20,13 @@ const DonutChart = ({ launchData }) => {
           'rgba(255, 99, 132, 0.2)',
           'rgba(83, 104, 125, 0.2)',
           'rgba(159, 123, 159, 0.2)',
-          // Add more colors if needed
+          // if needed more colours can be added here to style the chart
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
           'rgba(83, 104, 125, 1)',
           'rgba(159, 123, 159, 1)',
-          // Add more colors if needed
+          // more colours can be added here
         ],
         borderWidth: 1,
         width={150} height ={159},
@@ -34,6 +35,7 @@ const DonutChart = ({ launchData }) => {
   };
 
   useEffect(() => {
+    // Registering required chart elements and plugins
     ChartJS.register(ArcElement, Tooltip, Legend);
   }, []);
 

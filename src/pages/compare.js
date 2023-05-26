@@ -3,15 +3,18 @@ import axios from 'axios';
 import { Doughnut } from 'react-chartjs-2';
 
 const Compare = () => {
-  const [launchData, setLaunchData] = useState([]);
-  const [compareData, setCompareData] = useState([]);
-  const [showCompare, setShowCompare] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState('');
+  // State variables
+  const [launchData, setLaunchData] = useState([]); // Stores the initial launch data
+  const [compareData, setCompareData] = useState([]); // Stores the data for products being compared
+  const [showCompare, setShowCompare] = useState(false); // Controls whether the comparison section is shown
+  const [selectedProduct, setSelectedProduct] = useState(''); // Tracks the selected product for comparison
 
   useEffect(() => {
+    // Fetch initial launch data from API
     axios
       .get('https://fakestoreapi.com/products?sort=desc')
       .then((res) => {
+        // Process the received data
         const data = res.data.slice(0, 10).map((item) => ({
           id: item.id,
           category: item.category,
@@ -23,7 +26,7 @@ const Compare = () => {
           stock: item.rating.count + item.rating.rate,
         }));
         setLaunchData(data);
-        setCompareData(data);
+        setCompareData(data); // Set the initial compareData to the fetched data
       })
       .catch((err) => {
         console.log(err);
@@ -31,19 +34,22 @@ const Compare = () => {
   }, []);
 
   const handleRemoveItem = (id) => {
+    // Remove a product from the compareData
     const updatedCompareData = compareData.filter((product) => product.id !== id);
     setCompareData(updatedCompareData);
     if (updatedCompareData.length < 2) {
-      setShowCompare(false);
+      setShowCompare(false); // Hide the comparison section if less than 2 products remain
     }
   };
 
   const handleLoadItems = () => {
+    // Load additional items for comparison
     const nextPage = Math.floor(launchData.length / 8) + 1; // Calculate the next page number
-  
+
     axios
       .get(`https://fakestoreapi.com/products?sort=desc&page=${nextPage}`)
       .then((res) => {
+        // Process the received data
         const newData = res.data.map((item) => ({
           id: item.id,
           category: item.category,
@@ -54,7 +60,7 @@ const Compare = () => {
           sales: item.rating.count,
           stock: item.rating.count + item.rating.rate,
         }));
-        setLaunchData((prevData) => [...prevData, ...newData]);
+        setLaunchData((prevData) => [...prevData, ...newData]); // Append new data to launchData
       })
       .catch((err) => {
         console.log(err);
@@ -62,10 +68,12 @@ const Compare = () => {
   };
 
   const handleSelectProduct = (event) => {
+    // Handle selection of a product for comparison
     setSelectedProduct(event.target.value);
   };
 
   const handleAddProduct = () => {
+    // Add a selected product to the compareData
     const productToAdd = launchData.find((product) => product.id === parseInt(selectedProduct));
     if (productToAdd) {
       setCompareData([...compareData, productToAdd]);
@@ -75,9 +83,10 @@ const Compare = () => {
   };
 
   const getChartData = () => {
+    // Prepare chart data for the Doughnut component
     const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']; // Define color options
     const dataLength = compareData.length;
-  
+
     const labels = compareData.map((product) => `${product.title} - $${product.price}`);
     const datasets = [
       {
@@ -86,34 +95,35 @@ const Compare = () => {
         hoverBackgroundColor: colors.slice(0, dataLength),
       },
     ];
-  
+
     return {
       labels,
       datasets,
     };
   };
-  
 
   return (
     <div>
+      {/* Render the product selection section */}
       <h2 style={{ display: 'flex', alignItems: 'center' }}>
         {!showCompare && (
-        <div>
-          <h3>Select a product to compare:</h3>
-          <select value={selectedProduct} onChange={handleSelectProduct}>
-            <option value="">Select</option>
-            {launchData.map((product, index) => (
-              <option key={index} value={product.id}>
-                {product.title}
-              </option>
-            ))}
-          </select>
-          <button onClick={handleAddProduct} disabled={!selectedProduct}>
-            Add Product
-          </button>
-        </div>
-      )}
+          <div>
+            <h3>Select a product to compare:</h3>
+            <select value={selectedProduct} onChange={handleSelectProduct}>
+              <option value="">Select</option>
+              {launchData.map((product, index) => (
+                <option key={index} value={product.id}>
+                  {product.title}
+                </option>
+              ))}
+            </select>
+            <button onClick={handleAddProduct} disabled={!selectedProduct}>
+              Add Product
+            </button>
+          </div>
+        )}
       </h2>
+      {/* Render the comparison section */}
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {compareData.map((product) => (
           <div key={product.id} style={{ flex: '0 0 50%', marginBottom: '20px' }}>
@@ -140,6 +150,7 @@ const Compare = () => {
           </div>
         ))}
       </div>
+      {/* Render the product selection section again */}
       {!showCompare && (
         <div>
           <select value={selectedProduct} onChange={handleSelectProduct}>
