@@ -7,25 +7,27 @@ import { motion } from "framer-motion";
 import Logo from "../assets/logo.png";
 
 const Sidebar = () => {
-  const [selected, setSelected] = useState(0);
-  const [expanded, setExpanded] = useState(true);
-  const location = useLocation();
+  const [selected, setSelected] = useState(0); // State variable to keep track of the selected menu item
+  const [expanded, setExpanded] = useState(true); // State variable to control the expansion/collapse of the sidebar
+  const location = useLocation(); // Hook to get the current URL location
 
   useEffect(() => {
+    // Update the selected menu item when the URL changes
     const matchingRoute = SidebarData.findIndex(item => location.pathname.includes(item.path));
     setSelected(matchingRoute !== -1 ? matchingRoute : 0);
   }, [location]);
 
   const sidebarVariants = {
     true: {
-      left: '0'
+      left: '0' // Animate the sidebar to slide in from the left when expanded
     },
     false: {
-      left: '-60%'
+      left: '-60%' // Animate the sidebar to slide out to the left when collapsed
     }
   };
 
   const handleMenuItemClick = (index) => {
+    // Update the selected menu item when a menu item is clicked
     setSelected(index);
   };
 
@@ -39,7 +41,7 @@ const Sidebar = () => {
         variants={sidebarVariants}
         animate={window.innerWidth <= 768 ? `${expanded}` : ''}
       >
-        {/* logo */}
+        {/* Render the logo */}
         <div className="logo">
           <img src={Logo} alt="logo" />
         </div>
@@ -58,7 +60,7 @@ const Sidebar = () => {
               </NavLink>
             );
           })}
-          {/* signoutIcon */}
+          {/* Render the sign out icon */}
           <div className="menuItem">
             <UilSignOutAlt />
           </div>
