@@ -5,9 +5,14 @@ import { Doughnut } from 'react-chartjs-2';
 const Compare = () => {
   // State variables
   const [launchData, setLaunchData] = useState([]); // Stores the initial launch data
-  const [compareData, setCompareData] = useState([]); // Stores the data for products being compared
+  const [compareData1, setCompareData1] = useState([]); // Stores the data for products being compared
+  const [compareData2, setCompareData2] = useState([]); // Stores the data for products being compared
+  const [showData1, setShowData1] = useState([]); // Stores the data for products being compared
+  const [showData2, setShowData2] = useState([]); // Stores the data for products being compared
   const [showCompare, setShowCompare] = useState(false); // Controls whether the comparison section is shown
   const [selectedProduct, setSelectedProduct] = useState(''); // Tracks the selected product for comparison
+  const [selectedProduct1, setSelectedProduct1] = useState(''); // Tracks the selected product for comparison
+  const [selectedProduct2, setSelectedProduct2] = useState(''); // Tracks the selected product for comparison
 
   useEffect(() => {
     // Fetch initial launch data from API
@@ -26,17 +31,30 @@ const Compare = () => {
           stock: item.rating.count + item.rating.rate,
         }));
         setLaunchData(data);
-        setCompareData(data); // Set the initial compareData to the fetched data
+        setCompareData1(data); // Set the initial compareData to the fetched data
+        setCompareData2(data); // Set the initial compareData to the fetched data
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  const handleRemoveItem = (id) => {
+  const handleRemoveItem1 = (id) => {
     // Remove a product from the compareData
-    const updatedCompareData = compareData.filter((product) => product.id !== id);
-    setCompareData(updatedCompareData);
+    const updatedCompareData = compareData1.filter(
+      (product) => product.id !== id
+    );
+    setCompareData1(updatedCompareData);
+    if (updatedCompareData.length < 2) {
+      setShowCompare(false); // Hide the comparison section if less than 2 products remain
+    }
+  };
+  const handleRemoveItem2 = (id) => {
+    // Remove a product from the compareData
+    const updatedCompareData = compareData2.filter(
+      (product) => product.id !== id
+    );
+    setCompareData2(updatedCompareData);
     if (updatedCompareData.length < 2) {
       setShowCompare(false); // Hide the comparison section if less than 2 products remain
     }
@@ -69,14 +87,29 @@ const Compare = () => {
 
   const handleSelectProduct = (event) => {
     // Handle selection of a product for comparison
+
     setSelectedProduct(event.target.value);
+  };
+  const handleSelectProduct1 = (event) => {
+    const show = compareData1.filter((item) => item.id == event.target.value);
+    // Handle selection of a product for comparison
+    setSelectedProduct1(event.target.value);
+    setShowData1(show);
+  };
+  const handleSelectProduct2 = (event) => {
+    const show = compareData2.filter((item) => item.id == event.target.value);
+    // Handle selection of a product for comparison
+    setSelectedProduct2(event.target.value);
+    setShowData2(show);
   };
 
   const handleAddProduct = () => {
     // Add a selected product to the compareData
-    const productToAdd = launchData.find((product) => product.id === parseInt(selectedProduct));
+    const productToAdd = launchData.find(
+      (product) => product.id === parseInt(selectedProduct)
+    );
     if (productToAdd) {
-      setCompareData([...compareData, productToAdd]);
+      setCompareData1([...compareData1, productToAdd]);
       setSelectedProduct('');
       setShowCompare(true);
     }
@@ -85,12 +118,14 @@ const Compare = () => {
   const getChartData = () => {
     // Prepare chart data for the Doughnut component
     const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']; // Define color options
-    const dataLength = compareData.length;
+    const dataLength = compareData1.length;
 
-    const labels = compareData.map((product) => `${product.title} - $${product.price}`);
+    const labels = compareData1.map(
+      (product) => `${product.title} - $${product.price}`
+    );
     const datasets = [
       {
-        data: compareData.map((product) => product.price),
+        data: compareData1.map((product) => product.price),
         backgroundColor: colors.slice(0, dataLength),
         hoverBackgroundColor: colors.slice(0, dataLength),
       },
@@ -103,69 +138,151 @@ const Compare = () => {
   };
 
   return (
-    <div>
-      {/* Render the product selection section */}
-      <h2 style={{ display: 'flex', alignItems: 'center' }}>
-        {!showCompare && (
-          <div>
-            <h3>Select a product to compare:</h3>
-            <select value={selectedProduct} onChange={handleSelectProduct}>
-              <option value="">Select</option>
-              {launchData.map((product, index) => (
-                <option key={index} value={product.id}>
-                  {product.title}
-                </option>
-              ))}
-            </select>
-            <button onClick={handleAddProduct} disabled={!selectedProduct}>
-              Add Product
-            </button>
-          </div>
-        )}
-      </h2>
-      {/* Render the comparison section */}
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        {compareData.map((product) => (
-          <div key={product.id} style={{ flex: '0 0 50%', marginBottom: '20px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-              <img src={product.image} alt={product.title} style={{ width: '80px', marginRight: '10px' }} />
-              <div>
-                <h3>{product.title}</h3>
-                <p>Category: {product.category}</p>
-                <p>ID: {product.id}</p>
-                <p style={{ display: '-webkit-box', WebkitBoxOrient: 'vertical', WebkitLineClamp: 2, overflow: 'hidden' }}>
-                  Description: {product.description}
-                </p>
-                <p>Price: ${product.price}</p>
-              </div>
-              {showCompare && (
-                <button onClick={() => handleRemoveItem(product.id)}>Remove</button>
-              )}
-            </div>
-            <Doughnut data={getChartData()} width={250} height={250} />
+    <div style={{ display: 'flex', flexDirection: 'row' }}>
+      {/* row 1 */}
+      <div>
+        {/* Render the product selection section */}
+        <h2 style={{ display: 'flex', alignItems: 'center' }}>
+          {!showCompare && (
             <div>
-              <p>Sales: {product.sales}</p>
-              <p>Stock Available: {product.stock}</p>
+              <h3>Select a product to compare:</h3>
+              <select value={selectedProduct1} onChange={handleSelectProduct1}>
+                <option value=''>Select</option>
+                {launchData.map((product, index) => (
+                  <option key={index} value={product.id}>
+                    {product.title}
+                  </option>
+                ))}
+              </select>
+              <button onClick={handleAddProduct} disabled={!selectedProduct1}>
+                Add Product
+              </button>
             </div>
-          </div>
-        ))}
-      </div>
-      {/* Render the product selection section again */}
-      {!showCompare && (
-        <div>
-          <select value={selectedProduct} onChange={handleSelectProduct}>
-            <option value="">Select a product</option>
-            {launchData.map((product) => (
-              <option key={product.id} value={product.id}>
-                {product.title} - ${product.price}
-              </option>
-            ))}
-          </select>
-          <button onClick={handleAddProduct} disabled={!selectedProduct}>
-            Add Product
-          </button>
+          )}
+        </h2>
+        {/* Render the comparison section */}
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {showData1.map((product) => (
+            <div
+              key={product.id}
+              style={{ flex: '0 0 50%', marginBottom: '20px' }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginBottom: '10px',
+                }}
+              >
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  style={{ width: '80px', marginRight: '10px' }}
+                />
+                <div>
+                  <h3>{product.title}</h3>
+                  <p>Category: {product.category}</p>
+                  <p>ID: {product.id}</p>
+                  <p
+                    style={{
+                      display: '-webkit-box',
+                      WebkitBoxOrient: 'vertical',
+                      WebkitLineClamp: 2,
+                      overflow: 'hidden',
+                    }}
+                  >
+                    Description: {product.description}
+                  </p>
+                  <p>Price: ${product.price}</p>
+                </div>
+                {showCompare && (
+                  <button onClick={() => handleRemoveItem1(product.id)}>
+                    Remove
+                  </button>
+                )}
+              </div>
+              <Doughnut data={getChartData()} width={250} height={250} />
+              <div>
+                <p>Sales: {product.sales}</p>
+                <p>Stock Available: {product.stock}</p>
+              </div>
+            </div>
+          ))}
         </div>
-      )}
+        {/* Render the product selection section again */}
+      </div>
+
+      {/* row 2 */}
+      <div>
+        {/* Render the product selection section */}
+        <h2 style={{ display: 'flex', alignItems: 'center' }}>
+          {!showCompare && (
+            <div>
+              <h3>Select a product to compare:</h3>
+              <select value={selectedProduct2} onChange={handleSelectProduct2}>
+                <option value=''>Select</option>
+                {launchData.map((product, index) => (
+                  <option key={index} value={product.id}>
+                    {product.title}
+                  </option>
+                ))}
+              </select>
+              <button onClick={handleAddProduct} disabled={!selectedProduct}>
+                Add Product
+              </button>
+            </div>
+          )}
+        </h2>
+        {/* Render the comparison section */}
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {showData2.map((product) => (
+            <div
+              key={product.id}
+              style={{ flex: '0 0 50%', marginBottom: '20px' }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  marginBottom: '10px',
+                }}
+              >
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  style={{ width: '80px', marginRight: '10px' }}
+                />
+                <div>
+                  <h3>{product.title}</h3>
+                  <p>Category: {product.category}</p>
+                  <p>ID: {product.id}</p>
+                  <p
+                    style={{
+                      display: '-webkit-box',
+                      WebkitBoxOrient: 'vertical',
+                      WebkitLineClamp: 2,
+                      overflow: 'hidden',
+                    }}
+                  >
+                    Description: {product.description}
+                  </p>
+                  <p>Price: ${product.price}</p>
+                </div>
+                {showCompare && (
+                  <button onClick={() => handleRemoveItem1(product.id)}>
+                    Remove
+                  </button>
+                )}
+              </div>
+              <Doughnut data={getChartData()} width={250} height={250} />
+              <div>
+                <p>Sales: {product.sales}</p>
+                <p>Stock Available: {product.stock}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
