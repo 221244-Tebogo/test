@@ -58,22 +58,22 @@ The main theme of this term's project was the research, analysis, implementation
 1. Landing Page
 My landing page consisted of a dashboard-style interface, showcasing a summary or breakdown of the chosen dataset. I included contextual information outlining key factors of my research and the selected data set.
 
-## 1.1 Unique UI Visualization
+#### 1.1 Unique UI Visualization
 On the landing page, I included a UI element of my design that thematically matched and outlined a specific aspect of my dataset.
 
-2. Comparison Page
+#### 2. Comparison Page
 My application included a dedicated page for the comparison of two objects in the data set. I utilized a Bar graph, Pie chart, and a Polar Area or Radar chart to outline the comparative properties of the two objects.
 
-3. Timeline Page
+#### 3. Timeline Page
 The timeline page included a Line graph representing at least 5 different object properties, represented across the span of the data set. This graph was updated based on the user's selected property.
 
 ## Implementation
 In my project, I chose [mention the name of the API or data set you selected] as my data source. I researched this data set extensively to understand its structure and content. I then implemented the following components based on the project requirements:
 
-Landing Page
+### Landing Page
 I created a landing page that displayed a dashboard-style interface. It provided a summary of the chosen data set, including key statistics and trends. I also implemented a unique UI visualization element that highlighted a specific aspect of the data set, providing users with a quick and engaging overview.
 
-## Comparison Page
+### Comparison Page
 For the comparison page, I designed a dedicated section where users could compare two objects from the data set. I used Bar graphs, Pie charts, and a Polar Area or Radar chart to present the comparative properties of the selected objects. This allowed users to gain valuable insights into the data.
 
 ### Challenges
