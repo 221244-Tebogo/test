@@ -21,6 +21,30 @@ For this project, we utilized React and Node.js, as well as advanced Javascript 
 * React Router DOM <br> `npm i react-router-dom`
 * Axios <br> `npm i axios`
 
+### Install Dependencies: 
+ "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@iconscout/react-unicons": "^2.0.2",
+    "@mui/material": "^5.13.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.4.0",
+    "bootstrap": "^5.2.3",
+    "bootstrap-icons": "^1.10.5",
+    "chart.js": "^4.3.0",
+    "framer-motion": "^10.12.11",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.7.4",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "react-dropdown": "^1.11.0",
+    "react-router-dom": "^6.11.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+
 ## Features and Functionality:
 
 The web application is structured around six primary user-facing pages. The initial page serves as the home screen, showcasing the top questions that students have asked as well as a search bar where a user can search for a question and an answer. Next, on the questions page, the user will be able to "ask" a question about their code. They'll be able to type the question as well as select tags that are related to their question. Additionally the user will also be able to add extra information to help better describe their question. If the user then wants to they can add an image of their code before they upload the question. 
