@@ -55,17 +55,27 @@ The main theme of this term's project was the research, analysis, implementation
 
 
 ## Project Specifications
-1. Landing Page
-My landing page consisted of a dashboard-style interface, showcasing a summary or breakdown of the chosen dataset. I included contextual information outlining key factors of my research and the selected data set.
+#### 1. Landing Page
+The Landing Page comprises three core components: FeaturedProducts, LineChart, and Table, providing users with a consolidated view of the data.
+
+FeaturedProducts Component: This component highlights essential data entries, delivering valuable insights into popular products, top-selling items, and significant metrics.
+
+LineChart Component: Utilizing Chart.js and Axios, the LineChart presents an interactive line graph. Users can visualize revenue trends over time, identifying patterns and fluctuations for data-driven decision-making.
+
+Table Component: Implementing MUI components, the Table offers a detailed list of recent purchases. It includes product names, tracking IDs, dates, and order statuses color-coded for swift analysis.
+
+Asynchronous data retrieval is employed for a responsive user interface. The LineChart component utilizes the useEffect hook for asynchronous data fetching. To ensure a smooth and responsive user interface, the setTimeout function introduces a 1000-millisecond delay before updating the chartData state.
 
 #### 1.1 Unique UI Visualization
 On the landing page, I included a UI element of my design that thematically matched and outlined a specific aspect of my dataset.
 
 #### 2. Comparison Page
-My application included a dedicated page for the comparison of two objects in the data set. I utilized a Bar graph, Pie chart, and a Polar Area or Radar chart to outline the comparative properties of the two objects.
+The Compare page utilizes asynchronous attributes, specifically the Axios library, for making asynchronous requests to fetch data from the API. Through the useEffect hook, the page asynchronously fetches data, while the handleLoadItems function loads additional items for comparison. This approach ensures the code to continue executing while waiting for the data to be fetched. Users can select and compare two products from the API, and it displays essential details, including title, category, ID, description, price, sales, and stock.
+
+A Doughnut chart showcases the price differences between the selected products, enabling users to make informed decisions based on a comprehensive analysis. Overall, the page is a dynamic and data-rich tool for users to compare products effectively.
 
 #### 3. Timeline Page
-The timeline page included a Line graph representing at least 5 different object properties, represented across the span of the data set. This graph was updated based on the user's selected property.
+I’ve integrated the Chart.js library’s LineChart component using React and the react-chartjs-2 package for smooth data visualization. Utilizing Axios, to fetch data from the API to create an interactive line graph displaying sales performance for the top 10 products. The tool also includes price difference details to help users identify pricing trends, providing a user-friendly and data-rich experience that empowers business users to monitor product performance effectively.
 
 ## Implementation
 In my project, I chose [mention the name of the API or data set you selected] as my data source. I researched this data set extensively to understand its structure and content. I then implemented the following components based on the project requirements:
