@@ -1,4 +1,4 @@
-# Interactive Development 200 Term 4 -  Tebogo Ramolobeng
+# Interactive Development 200 Term 1 Component Based Development -  Tebogo Ramolobeng
 
 ## About the project:
 
