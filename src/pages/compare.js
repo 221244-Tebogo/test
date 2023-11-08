@@ -115,6 +115,44 @@ const Compare = () => {
     }
   };
 
+  const getChartData1 = () => {
+    // Prepare chart data for the Doughnut component
+    const colors = ['#FF6384', '#36A2EB', '#FFCE56']; // Define color options
+    const dataLength = compareData1.length;
+
+    const labels = ['Price', 'Stock Level', 'Sales'];
+    const datasets = [
+      {
+        data: [showData1[0].price, showData1[0].stock, showData1[0].sales],
+        backgroundColor: colors.slice(0, dataLength),
+        hoverBackgroundColor: colors.slice(0, dataLength),
+      },
+    ];
+
+    return {
+      labels,
+      datasets,
+    };
+  };
+  const getChartData2 = () => {
+    // Prepare chart data for the Doughnut component
+    const colors = ['#FF6384', '#36A2EB', '#FFCE56']; // Define color options
+    const dataLength = compareData1.length;
+
+    const labels = ['Price', 'Stock Level', 'Sales'];
+    const datasets = [
+      {
+        data: [showData2[0].price, showData2[0].stock, showData2[0].sales],
+        backgroundColor: colors.slice(0, dataLength),
+        hoverBackgroundColor: colors.slice(0, dataLength),
+      },
+    ];
+
+    return {
+      labels,
+      datasets,
+    };
+  };
   const getChartData = () => {
     // Prepare chart data for the Doughnut component
     const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']; // Define color options
@@ -194,6 +232,8 @@ const Compare = () => {
                     Description: {product.description}
                   </p>
                   <p>Price: ${product.price}</p>
+                  <p>Sales: {product.sales}</p>
+                  <p>Stock Available: {product.stock}</p>
                 </div>
                 {showCompare && (
                   <button onClick={() => handleRemoveItem1(product.id)}>
@@ -201,11 +241,7 @@ const Compare = () => {
                   </button>
                 )}
               </div>
-              <Doughnut data={getChartData()} width={250} height={250} />
-              <div>
-                <p>Sales: {product.sales}</p>
-                <p>Stock Available: {product.stock}</p>
-              </div>
+              <Doughnut data={getChartData1()} width={250} height={250} />
             </div>
           ))}
         </div>
@@ -267,6 +303,8 @@ const Compare = () => {
                     Description: {product.description}
                   </p>
                   <p>Price: ${product.price}</p>
+                  <p>Sales: {product.sales}</p>
+                  <p>Stock Available: {product.stock}</p>
                 </div>
                 {showCompare && (
                   <button onClick={() => handleRemoveItem1(product.id)}>
@@ -274,11 +312,7 @@ const Compare = () => {
                   </button>
                 )}
               </div>
-              <Doughnut data={getChartData()} width={250} height={250} />
-              <div>
-                <p>Sales: {product.sales}</p>
-                <p>Stock Available: {product.stock}</p>
-              </div>
+              <Doughnut data={getChartData2()} width={250} height={250} />
             </div>
           ))}
         </div>
