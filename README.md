@@ -49,27 +49,41 @@ In the initial brainstorming stage of the project, we took a look at Stack Overf
 ![answers](./wireframes/answers.png)
 ![profile](./wireframes/profile.png)
 
-## Development Process
+## Project Overview
 
-### Highlights
+The main theme of this term's project was the research, analysis, implementation, and visualization of a data set (API) of my choice. It was essential to select a sufficiently complex data set for my application. To visualize the data set, I utilized Charts.js, an open-source data visualization framework. I also implemented my unique form of data visualization, which was thematically related to the chosen data set. Additionally, I explored the concept of component-based development by using the React framework to construct the front end.
 
-We found the experience of working on this project to be immensely rewarding. One of the key highlights us was learning how to work as a team to complete a website that is fully functional and deployment ready.
 
-Another aspect of the project that we found particularly enjoyable was the chance to further improve our understanding of MERM stack development as well as React. As people who has worked with APIs in the past, we were already familiar with the basic concepts and principles involved. However, this project allowed us to delve deeper into the topic and gain a more nuanced understanding of how APIs work, how to use them effectively, and how to troubleshoot issues that might arise. By creating our own API it helped us gain further insight into how they are structured.
+## Project Specifications
+1. Landing Page
+My landing page consisted of a dashboard-style interface, showcasing a summary or breakdown of the chosen dataset. I included contextual information outlining key factors of my research and the selected data set.
 
-Overall, I feel that this project was an incredibly valuable learning experience for us. Not only did it allow us to expand our skill sets and gain a deeper understanding of key concepts and techniques, but it also gave us the opportunity to work on a real-world project with practical applications as a group. We look forward to building on what we've learned and continuing to grow and develop as programmers and developers in the future.
+## 1.1 Unique UI Visualization
+On the landing page, I included a UI element of my design that thematically matched and outlined a specific aspect of my dataset.
+
+2. Comparison Page
+My application included a dedicated page for the comparison of two objects in the data set. I utilized a Bar graph, Pie chart, and a Polar Area or Radar chart to outline the comparative properties of the two objects.
+
+3. Timeline Page
+The timeline page included a Line graph representing at least 5 different object properties, represented across the span of the data set. This graph was updated based on the user's selected property.
+
+## Implementation
+In my project, I chose [mention the name of the API or data set you selected] as my data source. I researched this data set extensively to understand its structure and content. I then implemented the following components based on the project requirements:
+
+Landing Page
+I created a landing page that displayed a dashboard-style interface. It provided a summary of the chosen data set, including key statistics and trends. I also implemented a unique UI visualization element that highlighted a specific aspect of the data set, providing users with a quick and engaging overview.
+
+## Comparison Page
+For the comparison page, I designed a dedicated section where users could compare two objects from the data set. I used Bar graphs, Pie charts, and a Polar Area or Radar chart to present the comparative properties of the selected objects. This allowed users to gain valuable insights into the data.
 
 ### Challenges
 
-Over the duration of this project, we encountered several obstacles that stretched our skill sets and took us beyond our familiar territory. Among these challenges, a particularly noteworthy hurdle emerged in uploading images onto our API.
+One of the most significant challenges I faced during this project was grasping the process of pulling data from an external API and effectively integrating it into my application. Additionally, I encountered difficulties in rendering and presenting the retrieved data in a user-friendly format.
 
-While the project undoubtedly presented substantial challenges, we view it as an invaluable learning journey. Navigating the complexities tied to the API and charts forced us to expand our developer capabilities and gain novel problem-solving insights. Reflecting on the project, a sense of accomplishment fills us as we consider what we managed to achieve. We eagerly anticipate applying these newfound lessons to upcoming ventures and obstacles.
 
 ## Future Implementation
 
-Reflecting on our work on this project, there are several areas where we feel there is room for improvement and further development. One of the key areas where we would like to focus in the future is on stabilizing the code and improving consistency. While we were able to get the code working effectively for the purposes of this project, we feel that there is room for improvement in terms of streamlining the code, making it more efficient, and reducing redundancies. In addition, we would like to develop a more consistent coding style when it comes to working in a group, to make the code more accessible to others and easier to maintain over time.
-
-Another area where we would like to expand and enhance the project is in making it more interactive and engaging for users. While the website is functional and provides a useful service, we believe that there is room to add more interactivity and animation to the site, in order to make it more visually appealing and engaging for users. This might involve developing new features and functionalities, such as interactive maps or dynamic data visualizations, or adding subtle animations and effects to various elements of the site.
+To enhance my skills and become more industry-ready, I plan to focus on gaining a deeper understanding of React and JavaScript. This will enable me to tackle similar projects with more confidence and efficiency.
 
 ## Final Outcome
 
@@ -80,10 +94,4 @@ https://github.com/MareliLourens/OpenFlow/assets/109971278/8f61f450-b44c-4f12-83
 
 
 ## Conclusion
-This project has been an incredible learning experience for us, and we are truly grateful for the opportunity to work on it. Throughout the course of the project, we have learned so much, from technical skills to project management and collaboration.
-
-Working on this project has allowed us to put into practice many of the concepts and techniques we have learned in our studies, and it has also challenged us to expand our knowledge and skills. From developing the initial idea to designing and implementing the project, we have gained a deeper understanding of the software development process and the importance of effective communication and teamwork.
-
-We am particularly proud of the progress we have made in developing our programming skills. We have also gained a greater appreciation for the importance of testing and debugging, and how these skills are critical to developing high-quality software.
-
-Overall, this project has been an incredibly fulfilling experience, and we are eager to continue working on it and implementing new features and improvements in the future. We believe that this project has not only helped us to develop our technical skills, but has also given us valuable experience working in a team environment and managing a project from start to finish. We am excited to take these skills and experiences with me as we move forward in our career, and we am confident that they will serve us well in whatever challenges lie ahead.
+This term's project was a significant learning experience. I successfully implemented a data-driven web application using Component-Based Development with React and data visualization with Charts.js. I honed my skills in JavaScript, data processing, and web development, and I now have a deeper understanding of data-driven applications. This project has prepared me for more advanced web development challenges in the future, and I look forward to applying the knowledge and skills I've gained in my upcoming projects.
