@@ -3,8 +3,7 @@
 ## About the project:
 
 I embarked on a journey to delve into the world of Component-Based Development. The primary focus of this term was on the further development of advanced JavaScript concepts, particularly related to JavaScript's two major data structures: Arrays and Objects. Additionally, I explored data-driven development and data visualization. This document outlines my learning experience and how I implemented my project based on the instructions provided.<br></br>
-To initiate this project, we all sad down for an ideation session that would serve as the foundation of our work. Simultaneously, each of us started with the project in the areas where we all excel in.
-<br><br>
+
 This project is centered around the development of a data-driven web application that focuses on data visualization using frameworks such as Charts.js. It's an opportunity to further your understanding of Component-Based Development while creating interactive and informative charts. The project's core elements include utilizing JavaScript, Axios for API integration, and a frontend framework like React.
 
 ## Getting Started:
