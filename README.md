@@ -2,7 +2,7 @@
 
 ## About the project:
 
-In our current roles as a fullstack developers, we embarked on a project to develop a full MERN stack application that's similar to the popular website, Stack Overflow . One particularly exciting aspect of this endeavor was the opportunity to delve into the code with the endpoint of creating this application for students from our own university. Given that Stack Overflow is already such a widely used website we made it our mission to make it as similar as possible but also "fixing" the pain points that we all had with it. This lead to a more UI focused website that is easier to maneuver.<br></br>
+I embarked on a journey to delve into the world of Component-Based Development. The primary focus of this term was on the further development of advanced JavaScript concepts, particularly related to JavaScript's two major data structures: Arrays and Objects. Additionally, I explored data-driven development and data visualization. This document outlines my learning experience and how I implemented my project based on the instructions provided.<br></br>
 To initiate this project, we all sad down for an ideation session that would serve as the foundation of our work. Simultaneously, each of us started with the project in the areas where we all excel in.
 <br><br>
 For this project, we utilized React and Node.js, as well as advanced Javascript and Axios.
